@@ -20,13 +20,17 @@ var slimEnv = require('slim-env')
 ```
 
 #### 1. Use as middleware
+```
+app.use(slimEnv.mw({in:['YOUR_SYSTEM_ENV_NAME_1', 'YOUR_SYSTEM_ENV_NAME_2']}))
+```
 
-##### - For Koa
+##### - Or
+###### - For Koa
 ```
 app.use(slimEnv.mw.koa({in:['YOUR_SYSTEM_ENV_NAME_1', 'YOUR_SYSTEM_ENV_NAME_2']}))
 ```
 
-##### - For Express
+###### - For Express
 ```
 app.use(slimEnv.mw.express({in:['YOUR_SYSTEM_ENV_NAME_1', 'YOUR_SYSTEM_ENV_NAME_2']}))
 ```
@@ -37,7 +41,7 @@ app.use(slimEnv.mw.express({in:['YOUR_SYSTEM_ENV_NAME_1', 'YOUR_SYSTEM_ENV_NAME_
 <script type="application/javascript" src="/slim-static/env.js"></script>
 ```
 
-### Opitons
+### Options
 
 #### in
 An Array you want to slim, if you pass an empty array then your webpage's bindKey (default is window.ENV) will be set to empty object ({})
@@ -47,8 +51,8 @@ The path of js/json file, default is /slim-static/env.js for js out_type and /sl
 
 #### out_type
 The static output format file, must be js or json, default is js. 
-If js, the file will look like 'window.ENV = {"TEMP":"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp"};' and Content-Type will be 'application/javascript'. 
-If json, the file will look like '{"TEMP":"C:\\Users\\ADMINI~1\\AppData\\Local\\Temp"}' and Content-Type will be 'application/json'
+If js, the file will look like 'window.ENV = {"TEMP":"C:\\Users\\ADMINI1\\AppData\\Local\\Temp"};' and Content-Type will be 'application/javascript'. 
+If json, the file will look like '{"TEMP":"C:\\Users\\ADMINI1\\AppData\\Local\\Temp"}' and Content-Type will be 'application/json'
 
 
 #### key

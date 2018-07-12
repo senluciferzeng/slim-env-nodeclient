@@ -12,7 +12,7 @@ function express(options){
 
 function koa(options){
     return function(ctx, next) {
-    	var output = getOutput(options);
+        var output = getOutput(options);
         if(ctx.path === output.BindPath && ctx.method === 'GET'){
             ctx.set('Content-Type', output.ContentType);
             ctx.body = (output.Body);
@@ -22,6 +22,32 @@ function koa(options){
         }
     }
 }
+
+function mw(options){
+    return function(arg1, arg2, arg3) {
+        if(typeof(arg2) === 'function'){
+            var output = getOutput(options);
+            if(arg1.path === output.BindPath && arg1.method === 'GET'){
+                arg1.set('Content-Type', output.ContentType);
+                arg1.body = (output.Body);
+                arg2();
+            }else{
+                arg2();
+            }
+        }else{
+            var output = getOutput(options);
+            if(arg1.path === output.BindPath && arg1.method === 'GET'){
+                arg2.set('Content-Type', output.ContentType);
+                arg2.send(output.Body);
+            }else{
+                arg3();
+            }
+        }
+    }
+}
+
+mw.express = express;
+mw.koa = koa;
 
 function getOutput(options){
 	var bindContentType = 'application/javascript';
@@ -59,4 +85,4 @@ function getOutput(options){
     return { ContentType: bindContentType, Body: outBody, BindPath: bindPath}
 }
 
-module.exports = { mw: {express:express, koa:koa } };
+module.exports = { mw:mw };

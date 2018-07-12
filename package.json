@@ -1,6 +1,6 @@
 {
   "name": "slim-env",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "slim-env node client, provide express and koa middleware, bin file for cli and several functions for config",
   "main": "index.js",
   "scripts": {
